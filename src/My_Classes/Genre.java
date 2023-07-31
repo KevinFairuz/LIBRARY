@@ -1,7 +1,9 @@
 package My_Classes;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -85,5 +87,61 @@ public class Genre {
         }
         
     }
+        
+    // Menghapus genre dari funsi idnya
+        public void removeGenre(int _id){
+        String removeQuery = "DELETE FROM `book_genres` WHERE `id` = ?";
+        try {
+            PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
+            
+            ps.setInt(1, _id);
+            
+            
+            if(ps.executeUpdate() !=0){
+                JOptionPane.showMessageDialog(null,"Genre Deleted", "remove", 1);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Genre not Edited", "remove", 2);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
+        // funtion to populate an arrayList  with genres
+        public ArrayList<Genre> genreList()
+        {
+            ArrayList<Genre> gList = new ArrayList<>();
+            
+            String selectQuery = "SELECT * FROM `book_genres`";
+            PreparedStatement ps;
+            ResultSet rs;
+            
+            
+            try {
+                ps = DB.getConnection().prepareStatement(selectQuery);
+                rs = ps.executeQuery();
+
+                Genre genre;
+                
+                while(rs.next())
+                {
+                    genre = new Genre(rs.getInt("id") , rs.getString("name"));
+                    gList.add(genre);
+                }
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            return gList;
+        }
+       
+           
+    
 }
 
