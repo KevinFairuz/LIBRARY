@@ -114,16 +114,12 @@ public class Genre {
         // funtion to populate an arrayList  with genres
         public ArrayList<Genre> genreList()
         {
-            ArrayList<Genre> gList = new ArrayList<>();
+           ArrayList<Genre> gList = new ArrayList<>();
             
-            String selectQuery = "SELECT * FROM `book_genres`";
-            PreparedStatement ps;
-            ResultSet rs;
-            
+           My_Classes.Func_Class func = new Func_Class();
             
             try {
-                ps = DB.getConnection().prepareStatement(selectQuery);
-                rs = ps.executeQuery();
+                ResultSet rs = func.getData("SELECT * FROM `book_genres`");
 
                 Genre genre;
                 
