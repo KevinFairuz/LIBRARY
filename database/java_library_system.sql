@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 01 Agu 2023 pada 17.15
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Host: sql309.infinityfree.com
+-- Waktu pembuatan: 01 Agu 2023 pada 20.15
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `java_library_system`
+-- Database: `if0_34732120_library`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +34,7 @@ CREATE TABLE `author` (
   `lastName` varchar(100) NOT NULL,
   `expertise` varchar(200) NOT NULL,
   `about` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -47,7 +48,7 @@ CREATE TABLE `author1` (
   `lastName` varchar(100) NOT NULL,
   `expertise` varchar(200) NOT NULL,
   `about` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `author1`
@@ -66,7 +67,7 @@ INSERT INTO `author1` (`id`, `firstName`, `lastName`, `expertise`, `about`) VALU
 CREATE TABLE `book_genres` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `book_genres`
@@ -82,6 +83,22 @@ INSERT INTO `book_genres` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `members`
+--
+
+CREATE TABLE `members` (
+  `id` int(11) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `phone` varchar(30) NOT NULL,
+  `email` text NOT NULL,
+  `gender` varchar(25) NOT NULL,
+  `picture` longblob NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -90,7 +107,7 @@ CREATE TABLE `users` (
   `username` varchar(120) NOT NULL,
   `password` varchar(30) NOT NULL,
   `usertype` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `users`
@@ -122,6 +139,12 @@ ALTER TABLE `book_genres`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -142,6 +165,12 @@ ALTER TABLE `author1`
 --
 ALTER TABLE `book_genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT untuk tabel `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

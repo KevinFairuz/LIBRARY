@@ -39,19 +39,9 @@ public class ManageGenresForm extends javax.swing.JFrame {
         func.displayImage(75,60,"/My_Images/hierarchy.png", jLabel_FormTitle);
         
         //custom jtable
-        /*jTable_Genres_.setSelectionBackground(Color.lightGray);
-        jTable_Genres_.setSelectionForeground(Color.white);
-        jTable_Genres_.setRowHeight(30);
-        jTable_Genres_.setShowGrid(false);
-        jTable_Genres_.setBackground(new Color(248,248,248));
-        */
         func.customTable(jTable_Genres_);
         // custom jtable header row
-        jTable_Genres_.getTableHeader().setBackground(new Color(42, 187, 155));// we will fix it laater
-        jTable_Genres_.getTableHeader().setForeground(Color.white);
-        jTable_Genres_.getTableHeader().setFont(new Font("Verdana",Font.BOLD,20));
-        jTable_Genres_.getTableHeader().setOpaque(false);
-        
+        func.customTableHeader(jTable_Genres_, new Color(42, 187, 155), 20);
         // Hide the jlabel "empty name message"
         jLabel_EmptyName_.setVisible(false);
         

@@ -44,11 +44,7 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
         func.customTable(jTable_Authors_);
         
         // custom jtable header row
-        jTable_Authors_.getTableHeader().setBackground(new Color(42, 187, 155));// we will fix it laater
-        jTable_Authors_.getTableHeader().setForeground(Color.white);
-        jTable_Authors_.getTableHeader().setFont(new Font("Verdana",Font.BOLD,20));
-        jTable_Authors_.getTableHeader().setOpaque(false);
-        
+        func.customTableHeader(jTable_Authors_, new Color(42, 187, 155), 20);
         // Hide the jlabel "empty name message"
         jLabel_EmptyFirstName_.setVisible(false);
         jLabel_EmptyLastName_.setVisible(false);

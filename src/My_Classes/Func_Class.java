@@ -1,6 +1,7 @@
 package My_Classes;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,10 @@ public class Func_Class {
     
     public void customTableHeader(JTable table,Color back_, Integer fontsize)
     {
-        
+        table.getTableHeader().setBackground(back_);// we will fix it laater
+        table.getTableHeader().setForeground(Color.white);
+        table.getTableHeader().setFont(new Font("Verdana",Font.BOLD,fontsize));
+        table.getTableHeader().setOpaque(false);
     }
     
     // membuat fungsi to return a resultSet
