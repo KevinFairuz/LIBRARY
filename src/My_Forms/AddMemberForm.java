@@ -6,15 +6,12 @@
 package My_Forms;
 
 
-import My_Classes.Member;
 import java.awt.Color;
-import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -22,7 +19,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,17 +41,15 @@ public class AddMemberForm extends javax.swing.JFrame {
         // center the form
         this.setLocationRelativeTo(null);
         
-        // add a gray border to the panel
+        // add  border to the panel
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3, new Color(1, 152, 117));
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
         My_Classes.Func_Class func = new My_Classes.Func_Class();
-        func.displayImage(90,60,"/My_Images/members.png", jLabel_FormTitle);
+        func.displayImage(90,60,null,"/My_Images/members.png", jLabel_FormTitle);
         
-        jLabel_EmptyFirstName_.setVisible(false);
-        jLabel_EmptyLastName_.setVisible(false);
-        jLabel_EmptyPhone_.setVisible(false);
+        
         
     }
 
@@ -332,6 +326,13 @@ public class AddMemberForm extends javax.swing.JFrame {
 
     private void jButton_Add_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Add_ActionPerformed
         // new member genre
+        
+        //hide the jlabel is "empty message"
+        jLabel_EmptyFirstName_.setVisible(false);
+        jLabel_EmptyLastName_.setVisible(false);
+        jLabel_EmptyPhone_.setVisible(false);
+        
+        //get the member data
         String fname = jTextField_FirstName.getText();
         String lname = jTextField_LastName.getText();
         String phone = jTextField_Phone.getText();
@@ -419,7 +420,7 @@ public class AddMemberForm extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select Profile Picture");
         
-        fileChooser.setCurrentDirectory(new File("C:\\images"));
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\khani\\OneDrive\\Documents\\TeamWork\\PBO\\LIBRARY-MANAGEMENT-SYSTEM\\images"));
         
         FileNameExtensionFilter extensionfilter = new FileNameExtensionFilter("Image",".png",".jpg","jpeg");
         fileChooser.addChoosableFileFilter(extensionfilter);
@@ -453,13 +454,13 @@ public class AddMemberForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

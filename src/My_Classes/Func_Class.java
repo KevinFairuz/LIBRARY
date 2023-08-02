@@ -15,11 +15,29 @@ import javax.swing.JTable;
 
 public class Func_Class {
     // membuat function untuk menampilkan foto di jlabel1
-    public void displayImage(int width, int height, String imagePath,JLabel label)
+    public void displayImage(int width, int height,byte[] imagebyte, String imagePath,JLabel label)
     {
         
         // get the image
-        ImageIcon imgIco = new ImageIcon(getClass().getResource(imagePath));
+        ImageIcon imgIco;
+        
+        if (imagebyte != null)// get image using bytes 
+        {
+            imgIco = new ImageIcon(imagebyte);
+        }
+        else // get image using path 
+        {
+            try 
+            {
+            // get the  image from the project resources
+            imgIco = new ImageIcon(getClass().getResource(imagePath));
+            }
+            catch(Exception e)
+            {
+                // get the  image from the desktop
+                imgIco = new ImageIcon((imagePath));
+            }
+        }
         
         // membuat image fit ke jlabel
         Image image = imgIco.getImage().getScaledInstance(width, height,Image.SCALE_SMOOTH);

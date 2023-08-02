@@ -28,7 +28,7 @@ public class Member {
         this.firstName = _fname;
         this.lastName = _lname;
         this.phone = _phone;
-        this.phone = _email;
+        this.email = _email;
         this.gender = _gender;
         this.picture = _picture;
 
@@ -155,7 +155,7 @@ public class Member {
     // Menghapus Member dari funsi idnya
         public void removeMember(int _id)
         {
-            String removeQuery = "DELETE FROM `member` WHERE `id` = ?";
+            String removeQuery = "DELETE FROM `members` WHERE `id` = ?";
             try {
                     PreparedStatement ps = DB.getConnection().prepareStatement(removeQuery);
             
@@ -176,6 +176,53 @@ public class Member {
                 } catch (SQLException ex) {
                     Logger.getLogger(Member.class.getName()).log(Level.SEVERE, null, ex);
                 }
-        }    
+        }
+        
+        //get member by id
+        public Member getMemberById(Integer _id) throws SQLException
+        {
+            Func_Class func = new Func_Class();
+            
+            String query = "SELECT * FROM `members` WHERE `id`= "+_id;
+                    
+            ResultSet rs = func.getData(query);
+            
+            if(rs.next())
+            {
+                return new Member(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getBytes(7));
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        
+        //fuction to populate an arrayList with members
+        public ArrayList<Member> membersList()
+        {
+            ArrayList<Member> mList = new ArrayList<>();
+            
+            My_Classes.Func_Class func = new Func_Class();
+            
+            try {
+                 
+                ResultSet rs = func.getData("SELECT * FROM `members`");
+                
+                Member member;
+                
+                while(rs.next())
+                {
+                    member = new Member(rs.getInt("id"),rs.getString("firstName"),rs.getString("lastName"),rs.getString("phone"),rs.getString("email"),rs.getString("gender"),rs.getBytes("picture"));
+                    mList.add(member);
+                }
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(Member.class.getName()).log(Level.SEVERE, null, ex); 
+            }
+            
+            return mList;
+        }
         
 }

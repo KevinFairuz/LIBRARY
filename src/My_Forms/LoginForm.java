@@ -33,7 +33,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         // display image in the dashboard left side
         My_Classes.Func_Class func = new My_Classes.Func_Class();
-        func.displayImage(jLabel_Logo.getWidth(), jLabel_Logo.getHeight(),"/My_Images/logo_login.png", jLabel_Logo);
+        func.displayImage(jLabel_Logo.getWidth(), jLabel_Logo.getHeight(),null,"/My_Images/logo_login.png", jLabel_Logo);
 
     }
     

@@ -36,7 +36,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         
         // display image in the top
         My_Classes.Func_Class func = new My_Classes.Func_Class();
-        func.displayImage(75,60,"/My_Images/hierarchy.png", jLabel_FormTitle);
+        func.displayImage(75,60,null,"/My_Images/hierarchy.png", jLabel_FormTitle);
         
         //custom jtable
         func.customTable(jTable_Genres_);

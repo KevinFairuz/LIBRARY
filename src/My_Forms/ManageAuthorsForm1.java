@@ -6,9 +6,7 @@
 package My_Forms;
 
 
-import My_Classes.Author1;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -32,19 +30,20 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
         // center the form
         this.setLocationRelativeTo(null);
         
-        // add a gray border to the panel
+        // add border to the panel
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3, new Color(1, 50, 67));
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
         My_Classes.Func_Class func = new My_Classes.Func_Class();
-        func.displayImage(75,60,"/My_Images/notepad.png", jLabel_FormTitle);
+        func.displayImage(75,60,null,"/My_Images/notepad.png", jLabel_FormTitle);
         
         //custom jtable
         func.customTable(jTable_Authors_);
         
         // custom jtable header row
         func.customTableHeader(jTable_Authors_, new Color(42, 187, 155), 20);
+        
         // Hide the jlabel "empty name message"
         jLabel_EmptyFirstName_.setVisible(false);
         jLabel_EmptyLastName_.setVisible(false);
@@ -509,13 +508,13 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageGenresForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageGenresForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

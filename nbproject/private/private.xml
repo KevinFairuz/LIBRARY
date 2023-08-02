@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Classes/DB.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Forms/ManageGenresForm.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Classes/Author1.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Forms/ManageAuthorsForm1.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Forms/LoginForm.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Forms/DashboardForm.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Classes/Func_Class.java</file>
-            <file>file:/E:/semester2/pbo/%20LIBRARY_MANAGEMENT_SYSTEM/src/My_Classes/Genre.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Classes/Member.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/EditMemberForm.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/MemberListForm.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/AddMemberForm.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/DeleteMemberForm.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Classes/Func_Class.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Classes/DB.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/ManageAuthorsForm1.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Forms/DashboardForm.java</file>
+            <file>file:/C:/Users/khani/OneDrive/Documents/TeamWork/PBO/LIBRARY-MANAGEMENT-SYSTEM/src/My_Classes/Author1.java</file>
         </group>
     </open-files>
 </project-private>
