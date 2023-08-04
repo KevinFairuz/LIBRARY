@@ -32,7 +32,8 @@ public class AddMemberForm extends javax.swing.JFrame {
     // membuat objek member
     
     My_Classes.Member member = new My_Classes.Member();
-    
+  
+    My_Classes.Func_Class func = new My_Classes.Func_Class();
     // create a variable to store the profile picture path
     String imagePath = null;
     public AddMemberForm() {
@@ -417,21 +418,10 @@ public class AddMemberForm extends javax.swing.JFrame {
 
     private void jButton_SelectProfilePicture_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SelectProfilePicture_ActionPerformed
         // select picture from the computer
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Profile Picture");
-        
-        fileChooser.setCurrentDirectory(new File("C:\\Users\\khani\\OneDrive\\Documents\\TeamWork\\PBO\\LIBRARY-MANAGEMENT-SYSTEM\\images"));
-        
-        FileNameExtensionFilter extensionfilter = new FileNameExtensionFilter("Image",".png",".jpg","jpeg");
-        fileChooser.addChoosableFileFilter(extensionfilter);
-        
-        int fileState = fileChooser.showSaveDialog(null);
-        
-        if(fileState == JFileChooser.APPROVE_OPTION){
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            String path = func.selectImage();
             jLabel_ImagePath.setText(path);
             imagePath = path;
-        }
+
             
     }//GEN-LAST:event_jButton_SelectProfilePicture_ActionPerformed
 
@@ -447,7 +437,6 @@ public class AddMemberForm extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    
                     //javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
                     break;

@@ -487,24 +487,13 @@ public class EditMemberForm extends javax.swing.JFrame {
 
     private void jButton_SelectProfilePicture_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SelectProfilePicture_ActionPerformed
         // select picture from the computer
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select Profile Picture");
-        
-        fileChooser.setCurrentDirectory(new File("C:\\Users\\khani\\OneDrive\\Documents\\TeamWork\\PBO\\LIBRARY-MANAGEMENT-SYSTEM\\images"));
-        
-        FileNameExtensionFilter extensionfilter = new FileNameExtensionFilter("Image",".png",".jpg","jpeg");
-        fileChooser.addChoosableFileFilter(extensionfilter);
-        
-        int fileState = fileChooser.showSaveDialog(null);
-        
-        if(fileState == JFileChooser.APPROVE_OPTION){
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            jLabel_ImagePath1.setText(path);
-            imagePath = path;
+        String path = func.selectImage();
+        jLabel_ImagePath1.setText(path);
+        imagePath = path;
             
-            // display the image 
-            func.displayImage(125,80,null,path, jLabel_Image);
-        }
+        // display the image 
+        func.displayImage(125,80,null,path, jLabel_Image);
+        
             
     }//GEN-LAST:event_jButton_SelectProfilePicture_ActionPerformed
 

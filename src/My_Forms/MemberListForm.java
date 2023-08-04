@@ -5,9 +5,12 @@
  */
 package My_Forms;
 
+import My_Classes.Member;
 import java.awt.Color;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +30,7 @@ public class MemberListForm extends javax.swing.JFrame {
     public MemberListForm() {
         initComponents();
         
-        // center the form
+        // center the form 
         this.setLocationRelativeTo(null);
         
         // add  border to the panel
@@ -35,16 +38,24 @@ public class MemberListForm extends javax.swing.JFrame {
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
-       func.displayImage(90,60,null,"/My_Images/members.png", jLabel_FormTitle);
-        
+        func.displayImage(90,60,null,"/My_Images/members.png", jLabel_FormTitle);
+       
         
         //custom jtable
-        func.customTable(jTable_Members);
+        func.customTable(jTable_Members_);
         
         // custom jtable header row
-        func.customTableHeader(jTable_Members, new Color(42, 187, 155), 20);
+        func.customTableHeader(jTable_Members_, new Color(36, 37, 42), 16);
         
-        populateJtableWithMembers();
+        // add a black border to the jlabel image
+        Border JlabelImageBorder = BorderFactory.createMatteBorder(1,1,1,1, new Color(0, 0, 0));
+        jLabel_Image.setBorder(JlabelImageBorder);
+        
+        
+        // Tambah Gambar Default untuk jLabel
+        func.displayImage(125, 80,null,"/My_Images/blank-profile.png", jLabel_Image);
+        
+        populateJtableWithMembers("");
     }
 
     /**
@@ -62,8 +73,13 @@ public class MemberListForm extends javax.swing.JFrame {
         jTextField_Search = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Members = new javax.swing.JTable();
-        jButton1_Search_ = new javax.swing.JButton();
+        jTable_Members_ = new javax.swing.JTable();
+        jButton_Search_ = new javax.swing.JButton();
+        jLabel_Image = new javax.swing.JLabel();
+        jLabel_FullName = new javax.swing.JLabel();
+        jLabel_Email = new javax.swing.JLabel();
+        jLabel_Phone = new javax.swing.JLabel();
+        jLabel_Gender = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -100,7 +116,8 @@ public class MemberListForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Value to Search:");
 
-        jTable_Members.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Members_.setForeground(new java.awt.Color(0, 102, 153));
+        jTable_Members_.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -108,15 +125,43 @@ public class MemberListForm extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable_Members);
-
-        jButton1_Search_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1_Search_.setText("Search");
-        jButton1_Search_.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1_Search_ActionPerformed(evt);
+        jTable_Members_.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_Members_MouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(jTable_Members_);
+
+        jButton_Search_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_Search_.setText("Search");
+        jButton_Search_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Search_ActionPerformed(evt);
+            }
+        });
+
+        jLabel_Image.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel_Image.setOpaque(true);
+
+        jLabel_FullName.setBackground(new java.awt.Color(0, 102, 153));
+        jLabel_FullName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_FullName.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel_FullName.setText("Full Name");
+
+        jLabel_Email.setBackground(new java.awt.Color(0, 51, 153));
+        jLabel_Email.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_Email.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel_Email.setText("Email");
+
+        jLabel_Phone.setBackground(new java.awt.Color(0, 51, 153));
+        jLabel_Phone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_Phone.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel_Phone.setText("Phone");
+
+        jLabel_Gender.setBackground(new java.awt.Color(0, 51, 153));
+        jLabel_Gender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel_Gender.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel_Gender.setText("Gender");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,15 +173,23 @@ public class MemberListForm extends javax.swing.JFrame {
                 .addComponent(jLabel2_CloseForm, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_FullName)
+                            .addComponent(jLabel_Email)
+                            .addComponent(jLabel_Phone)
+                            .addComponent(jLabel_Gender)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1_Search_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 76, Short.MAX_VALUE))
+                        .addComponent(jButton_Search_, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,17 +201,28 @@ public class MemberListForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1_Search_))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(jButton_Search_))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel_FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel_Phone, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,10 +242,10 @@ public class MemberListForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2_CloseFormMouseClicked
     
     // create a function to populate the jtable with authors
-    public void populateJtableWithMembers()
+    public void populateJtableWithMembers(String query)
     {
-        
-        ArrayList<My_Classes.Member> memberList = member.membersList();
+   
+        ArrayList<My_Classes.Member> memberList = member.membersList(query);
         
         // jtable columbs
         String[] colNames = {"ID","F-Name","L-Name","Phone","Email","Gender"};
@@ -200,7 +264,7 @@ public class MemberListForm extends javax.swing.JFrame {
         }
         
         DefaultTableModel model = new DefaultTableModel(rows,colNames);
-        jTable_Members.setModel(model);
+        jTable_Members_.setModel(model);
         
         
     }
@@ -209,10 +273,49 @@ public class MemberListForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_SearchActionPerformed
 
-    private void jButton1_Search_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1_Search_ActionPerformed
+    private void jButton_Search_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Search_ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1_Search_ActionPerformed
+        String value = jTextField_Search.getText();
+        String query = "SELECT * FROM `members` WHERE `firstName` LIKE'%"+value+"%' or `lastName` LIKE '%"+value+"%'";
+        populateJtableWithMembers(query);
+    }//GEN-LAST:event_jButton_Search_ActionPerformed
 
+    private void jTable_Members_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Members_MouseClicked
+        // TODO add your handling code here:
+                // get member data 
+        Member SelectedMember;
+        try {
+            // search member by id and display
+            Integer rowIndex = jTable_Members_.getSelectedRow();
+            Integer id = Integer.parseInt(jTable_Members_.getModel().getValueAt(rowIndex, 0).toString());
+            
+            SelectedMember = member.getMemberById(id);
+            
+            if(SelectedMember != null)
+            {                
+                jLabel_FullName.setText(SelectedMember.getFirstName()+" "+SelectedMember.getLastName());
+                jLabel_Phone.setText(SelectedMember.getPhone());
+                jLabel_Phone.setText(SelectedMember.getPhone());
+                jLabel_Email.setText(SelectedMember.getEmail());
+                jLabel_Gender.setText(SelectedMember.getGender());
+
+                // display the member
+                byte[] image = SelectedMember.getPicture();
+                // we will display the image using the imagepath 
+                // so we will mae the image path empty
+                func.displayImage(125,80,image,"", jLabel_Image);
+            }
+            else 
+            {
+                JOptionPane.showMessageDialog(null,"No Member With This Id is Found", "Invalid Id", 3);
+            }
+            
+        } catch (SQLException | NumberFormatException ex) {
+            //Logger.getLogger(EditMemberForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Enter a Valid Member Id", "Invalid Id", 3);
+        }
+    }//GEN-LAST:event_jTable_Members_MouseClicked
+ 
     /**
      * @param args the command line arguments
      */
@@ -225,7 +328,8 @@ public class MemberListForm extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    //javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
                     break;
                 }
             }
@@ -250,13 +354,18 @@ public class MemberListForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1_Search_;
+    private javax.swing.JButton jButton_Search_;
     private javax.swing.JLabel jLabel2_CloseForm;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel_Email;
     private javax.swing.JLabel jLabel_FormTitle;
+    private javax.swing.JLabel jLabel_FullName;
+    private javax.swing.JLabel jLabel_Gender;
+    private javax.swing.JLabel jLabel_Image;
+    private javax.swing.JLabel jLabel_Phone;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_Members;
+    private javax.swing.JTable jTable_Members_;
     private javax.swing.JTextField jTextField_Search;
     // End of variables declaration//GEN-END:variables
 }

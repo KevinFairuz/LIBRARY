@@ -199,15 +199,20 @@ public class Member {
         }
         
         //fuction to populate an arrayList with members
-        public ArrayList<Member> membersList()
+        public ArrayList<Member> membersList(String query)
         {
             ArrayList<Member> mList = new ArrayList<>();
             
             My_Classes.Func_Class func = new Func_Class();
             
             try {
+                
+                if (query.equals(""));
+                 {
+                    query = "SELECT * FROM `members`";
+                 }
                  
-                ResultSet rs = func.getData("SELECT * FROM `members`");
+                ResultSet rs = func.getData(query);
                 
                 Member member;
                 
