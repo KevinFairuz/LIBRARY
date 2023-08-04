@@ -121,7 +121,8 @@ public class Book {
     // masukkan function buku
     public void addBook(String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover)
     {
-        String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover`) (?,?,?,?,?,?,?,?,?,?)";
+    String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
         try {
             
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
