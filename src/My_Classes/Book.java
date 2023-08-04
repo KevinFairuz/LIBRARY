@@ -3,6 +3,8 @@ package My_Classes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -119,14 +121,13 @@ public class Book {
     }
     
     // masukkan function buku
-    public void addBook(String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover)
+    public void addBook(String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover) throws ParseException
     {
     String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             
             PreparedStatement ps = DB.getConnection().prepareStatement(insertQuery);
-            
             ps.setString(1, _isbn);
             ps.setString(2, _name);
             ps.setInt(3, _author_id);
@@ -134,7 +135,13 @@ public class Book {
             ps.setInt(5, _quantity);
             ps.setString(6, _publisher);
             ps.setDouble(7, _price);
-            ps.setString(8, _date_received);
+
+            // Konversi string tanggal menjadi objek java.sql.Date
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsedDate = sdf.parse(_date_received);
+            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
+
+            ps.setDate(8, sqlDate); // Menggunakan setDate untuk mengatur tanggal
             ps.setString(9, _description);
             ps.setBytes(10, _cover);
            
@@ -153,7 +160,7 @@ public class Book {
         }
         
     }
-    
+        
    
     
 }
