@@ -207,7 +207,7 @@ public class Member {
             
             try {
                 
-                if (query.equals(""));
+                if (query.equals(""))
                  {
                     query = "SELECT * FROM `members`";
                  }

@@ -18,7 +18,7 @@ public class DB {
     private static String serverName = "localhost";
     private static String userName = "root";
     private static String dbName = "java_library_system";
-    private static Integer portNumber = 3306;
+    private static Integer portNumber = 3307;
     private static String pass ="";// no password
     
     // create a unction to create & return the connection

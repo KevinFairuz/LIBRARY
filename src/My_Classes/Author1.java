@@ -68,6 +68,9 @@ public class Author1 {
         return about;
     }
     
+    // functions
+    My_Classes.Func_Class func = new Func_Class();
+    
     
         // masukkan genre function baru
     public void addAuthor(String _fname,String _lname,String _expertise,String _about)
@@ -158,7 +161,6 @@ public class Author1 {
         {
             ArrayList<Author1> aList = new ArrayList<>();
             
-            My_Classes.Func_Class func = new Func_Class();
             
             try {
                 ResultSet rs = func.getData("SELECT * FROM `author1`");
@@ -177,5 +179,20 @@ public class Author1 {
             
             return aList;
         }
-        
+    // Membuat sebuah fungsi untuk mendapatkan dari id
+       public Author1 getAuthorById(Integer id){
+                ResultSet rs = func.getData("SELECT * FROM `author1` where id ="+id);
+                Author1 author1 = null ;
+                
+        try {
+            while(rs.next())
+            {
+                author1 = new Author1(rs.getInt("id") , rs.getString("firstName"), rs.getString("lastName"), rs.getString("expertise"), rs.getString("about"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Author1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+                return author1;
+       }
 }

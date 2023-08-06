@@ -3,6 +3,7 @@ package My_Classes;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 
 public class Book {
     
+    private Integer id;
     private String isbn;
     private String name;
     private Integer author_id;
@@ -22,7 +24,29 @@ public class Book {
     private String date_received;
     private String description;
     private byte[] cover;
+    
+    public Book(Integer _id,String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover)
+    {
+     
+     this.id = _id;
+     this.isbn = _isbn;
+     this.name = _name;
+     this.author_id = _author_id;
+     this.genre_id = _genre_id;
+     this.quantity = _quantity;
+     this.publisher = _publisher;
+     this.price = _price;
+     this.date_received = _date_received;
+     this.description = _description;
+     this.cover = _cover;
+    }
 
+    public Book(){}
+    
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
@@ -34,7 +58,7 @@ public class Book {
     public void setAuthor_id(Integer author_id) {
         this.author_id = author_id;
     }
-
+    
     public void setGenre_id(Integer genre_id) {
         this.genre_id = genre_id;
     }
@@ -62,6 +86,10 @@ public class Book {
     public void setCover(byte[] cover) {
         this.cover = cover;
     }
+    
+    public Integer getId() {
+        return id;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -74,7 +102,7 @@ public class Book {
     public Integer getAuthor_id() {
         return author_id;
     }
-
+    
     public Integer getGenre_id() {
         return genre_id;
     }
@@ -102,28 +130,13 @@ public class Book {
     public byte[] getCover() {
         return cover;
     }
-
     
-    public Book(){}
-    
-    public Book(String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover)
-    {
-     this.isbn = _isbn;
-     this.name = _name;
-     this.author_id = _author_id;
-     this.genre_id = _genre_id;
-     this.quantity = _quantity;
-     this.publisher = _publisher;
-     this.price = _price;
-     this.date_received = _date_received;
-     this.description = _description;
-     this.cover = _cover;
-    }
+    Func_Class func = new Func_Class();
     
     // masukkan function buku
     public void addBook(String _isbn,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover) throws ParseException
     {
-    String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    String insertQuery = "INSERT INTO `books`(`isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover_image`) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             
@@ -135,7 +148,7 @@ public class Book {
             ps.setInt(5, _quantity);
             ps.setString(6, _publisher);
             ps.setDouble(7, _price);
-
+            
             // Konversi string tanggal menjadi objek java.sql.Date
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsedDate = sdf.parse(_date_received);
@@ -160,7 +173,88 @@ public class Book {
         }
         
     }
+    
+    // fungsi mengedit info buku yang dipilih
+    public void editBook(int _id,String _name,Integer _author_id,Integer _genre_id,Integer _quantity,String _publisher,double _price, String _date_received,String _description,byte[] _cover) throws ParseException
+    {
+    String updateQuery = "UPDATE `books` SET `name`=?,`author_id`=?,`genre_id`=?,`quantity`=?,`publisher`=?,`price`=?,`date_received`=?,`description`='?,`cover_image`=? WHERE `id` =?";
+
+        try {
+            
+            PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
+            //ps.setString(1, _isbn);
+            ps.setString(1, _name);
+            ps.setInt(2, _author_id);
+            ps.setInt(3, _genre_id);
+            ps.setInt(4, _quantity);
+            ps.setString(5, _publisher);
+            ps.setDouble(6, _price);
+            
+            // Konversi string tanggal menjadi objek java.sql.Date
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date parsedDate = sdf.parse(_date_received);
+            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
+
+            ps.setDate(8, sqlDate); // Menggunakan setDate untuk mengatur tanggal
+            ps.setString(8, _description);
+            ps.setBytes(9, _cover);
+            ps.setInt(10, _id);
+           
+            
+            if(ps.executeUpdate() !=0){
+                    JOptionPane.showMessageDialog(null,"Book Edited", "edit Book", 1);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Book not Edited", "edit Book", 2);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Member.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
         
    
+    // Membuat function untuk mengecek apakah isbn sudah ada atau belum
+    public boolean isISBNexists(String _isbn){
+        String query = "SELECT * FROM `books` WHERE `isbn` = '"+_isbn+"'";
+        
+        ResultSet rs = func.getData(query);
+        try {
+            if (rs.next()){ 
+                return true; // Jika isbn sudah ada true
+            } else {
+                return false; // jika tidak ada false
+            }
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
     
+    public Book searchBookbyId_Isbn(int _id, String _isbn){
+        
+        String query = "SELECT * FROM `books` WHERE `id` = "+_id+" or `isbn` = '"+_isbn+"'"; 
+        
+        ResultSet rs = func.getData(query);
+        Book book = null;
+        
+        try {
+            if (rs.next()){
+                book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getDouble(8), rs.getString(9), rs.getString(10), rs.getBytes(11));
+            } 
+            else {
+                return book;
+            }
+       } 
+
+        catch (SQLException ex) {
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return book;
+    }
 }

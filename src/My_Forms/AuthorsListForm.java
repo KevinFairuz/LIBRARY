@@ -22,6 +22,7 @@ public class AuthorsListForm extends javax.swing.JFrame {
      * Creates new form ManageGenresForm
      */
     My_Classes.Author1 author1 = new My_Classes.Author1();
+    public String formType = "";
     
     public AuthorsListForm() {
         initComponents();
@@ -195,6 +196,10 @@ public class AuthorsListForm extends javax.swing.JFrame {
         
         String full_name = firstName +" "+lastName;
         
+        if(formType.equals("edit"))
+        EditBookForm.displayAuthorData(id, full_name);
+        
+        else
         AddBookForm.displayAuthorData(index, full_name);
         
         //close thif form
