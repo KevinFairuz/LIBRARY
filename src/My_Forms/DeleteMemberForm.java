@@ -7,6 +7,7 @@ package My_Forms;
 
 
 import java.awt.Color;
+import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -34,7 +35,7 @@ public class DeleteMemberForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // add  border to the panel
-        Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3, new Color(1, 152, 117));
+        Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3, new Color(211, 84, 0));
         jPanel1.setBorder(panelHeaderBorder);
         
         // display image in the top
@@ -206,7 +207,10 @@ public class DeleteMemberForm extends javax.swing.JFrame {
             if(confirm == JOptionPane.YES_OPTION)
             {
                 member.removeMember(id);
-            }else{
+            }
+            
+            else
+            {
                 System.out.println("Cancel");
             }
             

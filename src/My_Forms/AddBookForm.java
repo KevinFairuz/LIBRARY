@@ -484,7 +484,7 @@ public class AddBookForm extends javax.swing.JFrame {
         
         
             Double price = Double.parseDouble(jTextField_Price.getText());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String received_date = dateFormat.format (jDateChooser_Date.getDate());
                 Path path = Paths.get(imagePath);
                 

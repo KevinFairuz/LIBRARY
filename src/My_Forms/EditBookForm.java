@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -114,7 +116,7 @@ public class EditBookForm extends javax.swing.JFrame {
         jLabel_FormTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel_FormTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_FormTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_FormTitle.setText("Add a New Book");
+        jLabel_FormTitle.setText("Edit Book");
         jLabel_FormTitle.setOpaque(true);
 
         jLabel2_CloseForm.setBackground(new java.awt.Color(211, 84, 0));
@@ -502,9 +504,12 @@ public class EditBookForm extends javax.swing.JFrame {
         if(!verif()){
             JOptionPane.showMessageDialog(null,"one or more fields are empty", "Empty Data", 2);
         }
-        else if(book.isISBNexists(isbn)){
+        /*
+        else if(book.isISBNexists(isbn))
+        {
             JOptionPane.showMessageDialog(null,"This ISBN already exists", "Wrong ISBN", 2);
         }
+        */
         else {
             try {
                 // get values
@@ -519,31 +524,36 @@ public class EditBookForm extends javax.swing.JFrame {
         
         
             Double price = Double.parseDouble(jTextField_Price.getText());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String received_date = dateFormat.format (jDateChooser_Date.getDate());
             Path path = Paths.get(imagePath);
                 
-                // get the image bytes
-                byte[] img = Files.readAllBytes(path);
+                // get the image 
+                try{
+                    byte[] img = Files.readAllBytes(path);
+                try {
+                    book.editBook(id, name, author_id, genre_id, quantity, publisher, price, received_date, description,img);
+                } catch (ParseException ex) {
+                    Logger.getLogger(EditBookForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }catch(IOException ex)
+                {
+                try {
+                    book.editBook(id, name, author_id, genre_id, quantity, publisher, price, received_date, description,null);
+                } catch (ParseException ex1) {
+                    Logger.getLogger(EditBookForm.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                }
                 
-                book.editBook(id, name, author_id, genre_id, quantity, publisher, price, received_date, description, img);
-            } catch (IOException | ParseException ex) {
-                JOptionPane.showMessageDialog(null,"Make Sure To Add a Cover Image", "No Cover Imate Found", 2);
-            } catch (NumberFormatException ex) {
+                
+                
+            }catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null,"You Entred Wrong Data In a Number Field", "Wrong Data", 2);
             } catch (NullPointerException ex){
                 JOptionPane.showMessageDialog(null,"You Need To Select a Date", "Select Date", 2);
             }
             
-            
-            
-         
-        }
-        
- 
-        
-        
-        
+        }    
     }//GEN-LAST:event_jButton_Edit_ActionPerformed
 
     private void jButton_select_author_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_select_author_ActionPerformed
@@ -618,10 +628,11 @@ public class EditBookForm extends javax.swing.JFrame {
                 jTextField_Publisher.setText(selectedBook.getPublisher());
                 jTextField_Price.setText(Double.toString(selectedBook.getPrice()));
                 jTextArea_Description.setText(selectedBook.getDescription());
+                jSpinner_Quantity.setValue(selectedBook.getQuantity());
                 jLabel_Author_ID.setText(String.valueOf(selectedBook.getAuthor_id()));
                 
                                 // Menampilkan nama lengkap author
-                String fullName = (author1.getAuthorById(selectedBook.getAuthor_id())).getFirstName() + "" + (author1.getAuthorById(selectedBook.getAuthor_id())).getLastName();
+               
                 
                                 
 

@@ -165,5 +165,22 @@ public class Genre {
             }
             return map;
         }
+            // Membuat sebuah fungsi untuk mendapatkan dari id
+             public Genre getGenreById(Integer id)
+             {
+                ResultSet rs = func.getData("SELECT * FROM `book_genres` where id ="+id);
+                Genre genre = null ;
+                
+            try {
+                while(rs.next())
+                {
+                genre = new Genre(rs.getInt("id"), rs.getString("name"));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Author1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                return genre;
+        }
 }
 
