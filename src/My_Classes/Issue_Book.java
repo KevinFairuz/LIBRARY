@@ -127,6 +127,33 @@ public class Issue_Book {
         }
     }
     
+    // update issue 
+    public void updateIssue(int _book_id, int _member_id,String _status ,String _return_date,String _issue_date, String _note){
+        String updateQuery = "UPDATE `issue_book` SET `status`= ?,`return_date`= ?,`note`= ? WHERE `book_id`=? AND `member_id`= ? and `issue_date`= ?";
+;        try {
+            
+            PreparedStatement ps = DB.getConnection().prepareStatement(updateQuery);
+            
+            ps.setString(1, _status);
+            ps.setString(2, _return_date);
+            ps.setString(3, _note);
+            ps.setInt(4, _book_id);
+            ps.setInt(5, _member_id);
+            ps.setString(6, _issue_date);
+            
+            if(ps.executeUpdate() !=0){
+                JOptionPane.showMessageDialog(null,"Status Updated", "Book Issue", 1);
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Status not Added", "Book Issue", 2);
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Issue_Book.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // check if this book is available
     // how to do that 
     // got the book quantity from table books and - compare it to the nummber of book issued in the table issue_book
@@ -173,33 +200,23 @@ public class Issue_Book {
     }
     
     //berfungsi untuk mengisi arraylist dengan buku yang dikeluarkan / dikembalikan / hilang
-    public ArrayList<Issue_Book> issuedBooksList(String status)
+    public ArrayList<Issue_Book> issuedBooksList(String _status)
         {
-            ArrayList<Issue_Book> issBList = new ArrayList<>();
+            // create a list
+            ArrayList<Issue_Book> issuedBooksList = new ArrayList<>();
             String query;
             
-            switch(status)
+            if(_status.equals(""))// if the status is empety > show all data
             {
-                case "all":
-                query = "";
-                break;
-                    
-                case "issued":
-                query = "";
-                break;
-                    
-                case "returned":
-                query = "";
-                break;
-                
-                case "lost":
-                query = "";
-                break;    
+                query = "SELECT * FROM `issue_book`";
+            }
+            else// show data depending on selected status
+            {
+                query = "SELECT * FROM `issue_book` WHERE `status` = '" + _status + "'";
             }
             
             
             try {
-                query = "SELECT * FROM `books`";
 
                 
                 ResultSet rs = func.getData(query);
@@ -209,7 +226,7 @@ public class Issue_Book {
                 while(rs.next())
                 {
                     issBook = new Issue_Book(rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
-                    issBList.add(issBook);
+                    issuedBooksList.add(issBook);
                 }
                 
                 
@@ -217,6 +234,6 @@ public class Issue_Book {
                 Logger.getLogger(Issue_Book.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            return issBList;
+            return issuedBooksList;
         }
 }

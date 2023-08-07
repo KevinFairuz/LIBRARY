@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -17,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 public class ReturnBookForm extends javax.swing.JFrame {
 
@@ -52,7 +54,14 @@ public class ReturnBookForm extends javax.swing.JFrame {
         setBorderToJlable(jLabel_BookName_,Color.white);
         setBorderToJlable(jLabel_MemberFullName_,Color.white);
         
+        //custom jtable
+        func.customTable(jTable_IssuedBooks_);
         
+        // custom jtable header row
+        func.customTableHeader(jTable_IssuedBooks_, new Color(42, 187, 155), 20);
+        
+        // poppulate Jtable form issued books table
+        populateJtableWithIssuedBooks("");
     }
 
     /**
@@ -206,6 +215,11 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
         jComboBox_Status_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox_Status_.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Issued", "Returned", "Lost" }));
+        jComboBox_Status_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_Status_ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -309,7 +323,10 @@ public class ReturnBookForm extends javax.swing.JFrame {
 
     private void jButton_Return_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Return_ActionPerformed
      
-        // issue a book 
+        // return a book 
+        // we will update the return date
+        // the note
+        // and the status to returned
         int _book_id = (int)jSpinner_BookId.getValue();
         int _member_id = (int)jSpinner_MemberID.getValue();
         String _note = jTextArea_Note.getText();
@@ -318,38 +335,19 @@ public class ReturnBookForm extends javax.swing.JFrame {
         
         try
         {
-            String _issue_date = dateFormat.format (jDateChooser_IssueDate.getDate());
             String _return_date = dateFormat.format (jDateChooser_Return_Date.getDate());
-            
-            // before issuing  abook  we need to  check
-            // if the return date came the issued date
-            // we need to check if the book  and member exists
-            
-            Date issDate = dateFormat.parse(_issue_date);
             Date rtnDate = dateFormat.parse(_return_date);
-           
-            if(!book_Exists) // if the book doesnt exist
-            {
-             JOptionPane.showMessageDialog(null,"You  Need To Check If This Book Exist First By Clicking The Search Book Button", "Check If The Book  Exist", 2);   
-            }
-            else if (!member_Exists) // if the member doesnt exist
-            {
-                JOptionPane.showMessageDialog(null,"You  Need To Check If This Member Exist First By Clicking The Search Member Button", "Check If The Member  Exist", 2);
-            }
             
-            // we need check if this book is available
-            else if(issue.checkBookAvailability(_book_id))
-            {
-             JOptionPane.showMessageDialog(null,"This Book is Not Available Right Now", "Book Not Available", 2);   
-            }
+            String _issue_date = dateFormat.format (jDateChooser_IssueDate.getDate());
+            Date issDate = dateFormat.parse(_issue_date);
             
-            else if(rtnDate.before(issDate)) // if the  return date is higher than the issue date
+            if(rtnDate.before(issDate)) // if the  return date is higher than the issue date
             {
              JOptionPane.showMessageDialog(null,"The Return Date Must Be After The Issue Date", "Wrong Date", 2); 
             }
             else
             {
-             issue.addIssue(_book_id, _member_id, "issued", _issue_date, _return_date, _note);
+             issue.updateIssue(_book_id, _member_id, "returned", _issue_date, _return_date, _note);
              // mengatur ulang bidang 
              jSpinner_BookId.setValue(0);
              jSpinner_MemberID.setValue(0);
@@ -357,9 +355,8 @@ public class ReturnBookForm extends javax.swing.JFrame {
              jLabel_MemberFullName_.setText("Member Full-Name");
              jDateChooser_IssueDate.setDate(new Date());
              jDateChooser_Return_Date.setDate(new Date());
-             book_Exists = false;
-             member_Exists = false;
-            }}
+            }
+        }
         catch (HeadlessException | NullPointerException | ParseException ex)
         {
           JOptionPane.showMessageDialog(null,"Select Issue Date & Return Date", "Select Date", 2);
@@ -410,22 +407,71 @@ public class ReturnBookForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_MemberFullName_MouseExited
 
     private void jTable_IssuedBooks_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_IssuedBooks_MouseClicked
-        // Menampilkan genre yang pilih
+        // Menampilkan the selected row data
+        
+        
         // get the selcted genre
         int index = jTable_IssuedBooks_.getSelectedRow();
-
+        
         // get values
-        String id =jTable_IssuedBooks_.getValueAt(index, 0).toString();
-        String firstName =jTable_IssuedBooks_.getValueAt(index, 1).toString();
-        String lastName =jTable_IssuedBooks_.getValueAt(index, 2).toString();
-        String expertise =jTable_IssuedBooks_.getValueAt(index, 3).toString();
-        String about =jTable_IssuedBooks_.getValueAt(index, 4).toString();
+        int book_id =Integer.parseInt(jTable_IssuedBooks_.getValueAt(index, 0).toString());
+        int member_id =Integer.parseInt(jTable_IssuedBooks_.getValueAt(index, 1).toString());
+
+        My_Classes.Book selectedBook;
+        My_Classes.Member selectedMember;
+
+        try {
+            // there's no member with the id 1
+            // we wiil fix it later when we add foreign keys to the tables
+            selectedBook = book.getBookById(book_id);
+            //display the book title/name and id
+            jSpinner_BookId.setValue(selectedBook.getId());
+            jLabel_BookName_.setText(selectedBook.getName());
+            
+            selectedMember = member.getMemberById(member_id);
+            //display the member full-name and id
+            jSpinner_MemberID.setValue(selectedMember.getId());
+            jLabel_MemberFullName_.setText(selectedMember.getFirstName() + " " +selectedMember.getLastName() );
+             
+                String issued_date =jTable_IssuedBooks_.getValueAt(index, 3).toString();
+                String return_date =jTable_IssuedBooks_.getValueAt(index, 4).toString();
+                //String status =jTable_IssuedBooks_.getValueAt(index, 4).toString();
+                String note =jTable_IssuedBooks_.getValueAt(index, 5).toString();
+            
+               // display the date
+               Date issDate = new SimpleDateFormat("yyyy-MM-dd").parse(issued_date);
+               jDateChooser_IssueDate.setDate(issDate);
+               
+               Date rtnDate = new SimpleDateFormat("yyyy-MM-dd").parse(return_date);
+               jDateChooser_Return_Date.setDate(rtnDate);
+               
+               jTextArea_Note.setText(note);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ReturnBookForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+
 
     }//GEN-LAST:event_jTable_IssuedBooks_MouseClicked
 
     private void jButton_Lost_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Lost_ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_Lost_ActionPerformed
+
+    private void jComboBox_Status_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Status_ActionPerformed
+        // display data on the jtabel depending on the jcombobox selected value
+        String status = jComboBox_Status_.getSelectedItem().toString();
+        if (status.equals("All"))
+        {
+            status = "";
+        }
+        populateJtableWithIssuedBooks(status);
+    }//GEN-LAST:event_jComboBox_Status_ActionPerformed
     
     
     // Membuat batas set fungsi kecil 
@@ -435,7 +481,33 @@ public class ReturnBookForm extends javax.swing.JFrame {
         label.setBorder(border);
     } 
     
-    
+    // create a function to populate the jtable with issued books
+    public void populateJtableWithIssuedBooks(String _status)
+    {
+        
+        ArrayList<My_Classes.Issue_Book> issBooksList = issue.issuedBooksList(_status);
+        
+        // jtable columbs
+        String[] colNames = {"Book","Member","status","Iss-Date","Rtn-Date","Note"};
+        
+        // row
+        Object[][] rows = new Object [issBooksList.size()][colNames.length];
+        
+        for(int i = 0; i < issBooksList.size(); i++)
+        {
+            rows[i][0] = issBooksList.get(i).getBook_id();
+            rows[i][1] = issBooksList.get(i).getMember_id();
+            rows[i][2] = issBooksList.get(i).getStatus();
+            rows[i][3] = issBooksList.get(i).getIssue_date();
+            rows[i][4] = issBooksList.get(i).getReturn_date();
+            rows[i][5] = issBooksList.get(i).getNote();
+        }
+        
+        DefaultTableModel model = new DefaultTableModel(rows,colNames);
+        jTable_IssuedBooks_.setModel(model);
+        
+        
+    }
     
     /**
      * @param args the command line arguments

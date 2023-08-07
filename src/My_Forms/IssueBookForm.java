@@ -455,7 +455,7 @@ public class IssueBookForm extends javax.swing.JFrame {
             
             if(selectedMember != null) // if this member exist
             {
-                //display the member full-name
+             //display the member full-name
              jLabel_MemberFullName_.setText(selectedMember.getFirstName() + " " +selectedMember.getLastName() );
              // set the members exist to true
              member_Exists = true;
