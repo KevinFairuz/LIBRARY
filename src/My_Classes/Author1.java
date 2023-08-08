@@ -180,7 +180,7 @@ public class Author1 {
             return aList;
         }
     // Membuat sebuah fungsi untuk mendapatkan dari id
-       public Author1 getAuthorById(Integer id){
+       public Author1 getAuthor1ById(Integer id){
                 ResultSet rs = func.getData("SELECT * FROM `author1` where id ="+id);
                 Author1 author1 = null ;
                 

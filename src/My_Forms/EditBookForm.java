@@ -633,7 +633,9 @@ public class EditBookForm extends javax.swing.JFrame {
                 
                  // Menampilkan nama lengkap author
                
-                
+                String fullName = (author1.getAuthor1ById(selectedBook.getAuthor_id())).getFirstName() + " " + 
+                                  (author1.getAuthor1ById(selectedBook.getAuthor_id())).getLastName();
+                jTextField_Author.setText(fullName);
                                 
 
                 
