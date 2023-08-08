@@ -70,7 +70,7 @@ public class BookInfoCardForm extends javax.swing.JFrame {
                 jLabel_ISBN.setText(SelectedBook.getIsbn());
                 jLabel_Name.setText(SelectedBook.getName());
                 
-                jLabel_Author.setText(author.getAuthorById(SelectedBook.getAuthor_id()).getFirstName() + " " + author.getAuthorById(SelectedBook.getAuthor_id()).getLastName());
+                jLabel_Author.setText(author.getAuthor1ById(SelectedBook.getAuthor_id()).getFirstName() + " " + author.getAuthor1ById(SelectedBook.getAuthor_id()).getLastName());
                 
                 jLabel_Genre.setText(genre.getGenreById(SelectedBook.getGenre_id()).getName());
                 jLabel_Publisher.setText(SelectedBook.getPublisher());
