@@ -31,7 +31,7 @@ public class DashboardForm extends javax.swing.JFrame {
     
     // the button border
     Border buttonBorder1 = BorderFactory.createMatteBorder(1,1,1,1, Color.white);
-    Border buttonBorder0 = BorderFactory.createMatteBorder(1,1,1,1, new Color(235,125,22));
+    Border buttonBorder0 = BorderFactory.createMatteBorder(1,1,1,1, new Color(153,204,51));
     
     My_Classes.Func_Class func = new Func_Class();
     My_Classes.Book book = new Book();
@@ -50,7 +50,7 @@ public class DashboardForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         // display image in the dashboard left side
-        func.displayImage(jLabel_Dashboard_Logo.getWidth(),jLabel_Dashboard_Logo.getHeight(),null,"/My_Images/logo_login.png", jLabel1);
+        func.displayImage(jLabel_Dashboard_Logo.getWidth(),jLabel_Dashboard_Logo.getHeight(),null,"/My_Images/logologin.png", jLabel1);
 
         
         // add a borde to the panel headear
@@ -58,16 +58,16 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_Header.setBorder(panelHeaderBorder);
         
         // addd more border]
-        Border panelHeader_1_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(235,125,22));
+        Border panelHeader_1_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(73,121,107));
         jPanel_1_Header.setBorder(panelHeader_1_Border);
         
-        Border panelHeader_2_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(26,138,32));
+        Border panelHeader_2_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(73,121,107));
         jPanel_2_Header.setBorder(panelHeader_2_Border);
         
-        Border panelHeader_3_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(115,40,125));
+        Border panelHeader_3_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(73,121,107));
         jPanel_3_Header.setBorder(panelHeader_3_Border);
         
-        Border panelHeader_4_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(115,40,125));
+        Border panelHeader_4_Border = BorderFactory.createMatteBorder(0,0,3,0, new Color(73,121,107));
         jPanel_4_Header.setBorder(panelHeader_4_Border);
         
         // add borders to the buttons
@@ -213,9 +213,9 @@ public class DashboardForm extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel_Menu.setBackground(new java.awt.Color(38, 37, 42));
+        jPanel_Menu.setBackground(new java.awt.Color(0, 102, 102));
 
-        jPanel_Header.setBackground(new java.awt.Color(1, 50, 67));
+        jPanel_Header.setBackground(new java.awt.Color(0, 76, 76));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -473,9 +473,9 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
-        jPanel_2.setBackground(new java.awt.Color(102, 0, 255));
+        jPanel_2.setBackground(new java.awt.Color(51, 153, 0));
 
-        jPanel_2_Header.setBackground(new java.awt.Color(204, 204, 0));
+        jPanel_2_Header.setBackground(new java.awt.Color(49, 120, 115));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -486,16 +486,16 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_2_HeaderLayout.setHorizontalGroup(
             jPanel_2_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_2_HeaderLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(119, 119, 119)
                 .addComponent(jLabel3)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel_2_HeaderLayout.setVerticalGroup(
             jPanel_2_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_2_HeaderLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_2_HeaderLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         jLabel_MembersCount.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -507,8 +507,8 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_2.setLayout(jPanel_2Layout);
         jPanel_2Layout.setHorizontalGroup(
             jPanel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_2_Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel_MembersCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_2_Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel_2Layout.setVerticalGroup(
             jPanel_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,33 +516,33 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addComponent(jPanel_2_Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jLabel_MembersCount)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel_1.setBackground(new java.awt.Color(204, 255, 0));
+        jPanel_1.setBackground(new java.awt.Color(225, 247, 213));
         jPanel_1.setPreferredSize(new java.awt.Dimension(350, 387));
 
-        jPanel_1_Header.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel_1_Header.setBackground(new java.awt.Color(139, 198, 121));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("BOOKS");
+        jLabel2.setText("BUKU");
 
         javax.swing.GroupLayout jPanel_1_HeaderLayout = new javax.swing.GroupLayout(jPanel_1_Header);
         jPanel_1_Header.setLayout(jPanel_1_HeaderLayout);
         jPanel_1_HeaderLayout.setHorizontalGroup(
             jPanel_1_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_1_HeaderLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(154, 154, 154)
                 .addComponent(jLabel2)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel_1_HeaderLayout.setVerticalGroup(
             jPanel_1_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_1_HeaderLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_1_HeaderLayout.createSequentialGroup()
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         jLabel_BooksCount.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -561,14 +561,14 @@ public class DashboardForm extends javax.swing.JFrame {
             jPanel_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_1Layout.createSequentialGroup()
                 .addComponent(jPanel_1_Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(61, 61, 61)
                 .addComponent(jLabel_BooksCount)
                 .addGap(0, 55, Short.MAX_VALUE))
         );
 
-        jPanel_3.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel_3.setBackground(new java.awt.Color(160, 214, 180));
 
-        jPanel_3_Header.setBackground(new java.awt.Color(204, 255, 102));
+        jPanel_3_Header.setBackground(new java.awt.Color(163, 193, 173));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -579,16 +579,16 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_3_HeaderLayout.setHorizontalGroup(
             jPanel_3_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_3_HeaderLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(119, 119, 119)
                 .addComponent(jLabel4)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel_3_HeaderLayout.setVerticalGroup(
             jPanel_3_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_3_HeaderLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_3_HeaderLayout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         jLabel_AuthorsCount.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -612,7 +612,7 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addGap(53, 53, 53))
         );
 
-        jPanel_4.setBackground(new java.awt.Color(204, 255, 0));
+        jPanel_4.setBackground(new java.awt.Color(153, 204, 51));
         jPanel_4.setPreferredSize(new java.awt.Dimension(350, 387));
 
         jPanel_4_Header.setBackground(new java.awt.Color(51, 51, 0));
@@ -648,17 +648,17 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addComponent(jLabel_Image_4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel_Image_5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_4_HeaderLayout.createSequentialGroup()
                     .addGap(231, 231, 231)
                     .addComponent(jLabel_Image_2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(636, Short.MAX_VALUE)))
+                    .addContainerGap(602, Short.MAX_VALUE)))
             .addGroup(jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_4_HeaderLayout.createSequentialGroup()
                     .addGap(241, 241, 241)
                     .addComponent(jLabel_Image3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(626, Short.MAX_VALUE)))
+                    .addContainerGap(592, Short.MAX_VALUE)))
         );
         jPanel_4_HeaderLayout.setVerticalGroup(
             jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,19 +666,19 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_Image_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Image_5, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(jLabel_Image_4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jLabel_Image_5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(jLabel_Image_4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_Image_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_4_HeaderLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel_Image_2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jLabel_Image_2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanel_4_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel_4_HeaderLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel_Image3, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jLabel_Image3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -693,9 +693,9 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_1_Header1Layout.setHorizontalGroup(
             jPanel_1_Header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_1_Header1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(31, 31, 31))
+                .addGap(21, 21, 21))
         );
         jPanel_1_Header1Layout.setVerticalGroup(
             jPanel_1_Header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -710,23 +710,22 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel_4Layout.setHorizontalGroup(
             jPanel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel_4_Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel_4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel_1_Header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 687, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(142, 142, 142))
+                .addGap(476, 476, 476)
+                .addComponent(jPanel_1_Header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_4Layout.createSequentialGroup()
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(jPanel_4_Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128))
         );
         jPanel_4Layout.setVerticalGroup(
             jPanel_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addComponent(jPanel_1_Header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jPanel_4_Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -735,16 +734,16 @@ public class DashboardForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(193, 193, 193)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel_1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
+                        .addGap(41, 41, 41)
                         .addComponent(jPanel_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel_4, javax.swing.GroupLayout.PREFERRED_SIZE, 1175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98))
+                    .addComponent(jPanel_4, javax.swing.GroupLayout.PREFERRED_SIZE, 1300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -752,11 +751,11 @@ public class DashboardForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(105, 105, 105)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel_1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
-                .addGap(54, 54, 54)
-                .addComponent(jPanel_4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                    .addComponent(jPanel_1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .addComponent(jPanel_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel_4, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
