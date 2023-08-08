@@ -35,7 +35,7 @@ public class DeleteBookForm extends javax.swing.JFrame {
         Border panelHeaderBorder = BorderFactory.createMatteBorder(3,3,3,3, new Color(211, 84, 0));
         jPanel1.setBorder(panelHeaderBorder);
         
-        // display image in the top
+        // Menampilkan Gambar diatas
         func.displayImage(90,60,null,"/My_Images/book.png", jLabel_FormTitle);
     }
 
