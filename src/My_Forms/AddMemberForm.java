@@ -343,15 +343,15 @@ public class AddMemberForm extends javax.swing.JFrame {
         
         
         // check jika textfield kosong
-        if(fname.isEmpty()){
+        if(fname.trim().isEmpty()){
             
             jLabel_EmptyFirstName_.setVisible(true);
         }
-        else if(lname.isEmpty())// jika textfiel tidak kosong
+        else if(lname.trim().isEmpty())// jika textfiel tidak kosong
         {
             jLabel_EmptyLastName_.setVisible(true);
         }
-        else if(phone.isEmpty())// jika textfiel tidak kosong
+        else if(phone.trim().isEmpty())// jika textfiel tidak kosong
         {
             jLabel_EmptyPhone_.setVisible(true);
         }

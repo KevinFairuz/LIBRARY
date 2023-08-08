@@ -23,7 +23,7 @@ public class Issue_Book {
     private int member_id;
     private String status; // issued - returned - lost
     private String issue_date;
-    private String Return_date;
+    private String return_date;
     private String note;
 
     public void setBook_id(int book_id) {
@@ -42,8 +42,8 @@ public class Issue_Book {
         this.issue_date = issue_date;
     }
 
-    public void setReturn_date(String Return_date) {
-        this.Return_date = Return_date;
+    public void setReturn_date(String return_date) {
+        this.return_date = return_date;
     }
 
     public void setNote(String note) {
@@ -71,7 +71,7 @@ public class Issue_Book {
     }
 
     public String getReturn_date() {
-        return Return_date;
+        return return_date;
     }
 
     public String getNote() {
@@ -85,12 +85,12 @@ public class Issue_Book {
     public Issue_Book() {
     }
 
-    public Issue_Book(int _book_id, int _member_id, String _status, String _issue_date, String _Return_date, String _note) {
+    public Issue_Book(int _book_id, int _member_id, String _status, String _issue_date, String _return_date, String _note) {
         this.book_id = _book_id;
         this.member_id = _member_id;
         this.status = _status;
         this.issue_date = _issue_date;
-        this.Return_date = _Return_date;
+        this.return_date = _return_date;
         this.note = _note;
     }
     

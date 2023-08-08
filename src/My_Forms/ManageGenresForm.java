@@ -124,6 +124,12 @@ public class ManageGenresForm extends javax.swing.JFrame {
             }
         });
 
+        jTextField_ID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_IDActionPerformed(evt);
+            }
+        });
+
         jButton_Add_.setText("add");
         jButton_Add_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,8 +194,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
                                 .addComponent(jLabel_EmptyName_, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jTextField_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -204,8 +209,8 @@ public class ManageGenresForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel1)
-                                .addGap(25, 25, 25)
-                                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -265,7 +270,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         // Genre baru
         String name = jTextField_Name.getText();
         // check jika textfield kosong
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
             jLabel_EmptyName_.setVisible(true);
             
         }
@@ -284,7 +289,7 @@ public class ManageGenresForm extends javax.swing.JFrame {
         String name = jTextField_Name.getText();
         
         // check jika textfield kosong
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
           jLabel_EmptyName_.setVisible(true);
             
         }
@@ -314,7 +319,15 @@ public class ManageGenresForm extends javax.swing.JFrame {
         try
            {
                int id = Integer.parseInt(jTextField_ID.getText());
-               genre.removeGenre(id);
+               
+               // menampilkan konfirmasi pesan sebelum di hapusnya sebuah Genre
+               int confirm = JOptionPane.showConfirmDialog(null,"Are You Sure You Want To Delete This Genre?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+            
+                if(confirm == JOptionPane.YES_OPTION)
+                {
+                    genre.removeGenre(id);
+                }
+               
                
                // refesh jtable with genres
                populateJtableWithgenres();
@@ -372,6 +385,10 @@ public class ManageGenresForm extends javax.swing.JFrame {
         // Menutup Jlabel ini dengan mengklik
         jLabel_EmptyName_.setVisible(false);
     }//GEN-LAST:event_jLabel_EmptyName_MouseClicked
+
+    private void jTextField_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_IDActionPerformed
 
     /**
      * @param args the command line arguments 

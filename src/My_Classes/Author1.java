@@ -72,7 +72,7 @@ public class Author1 {
     My_Classes.Func_Class func = new Func_Class();
     
     
-        // masukkan genre function baru
+   // masukkan function tambah author baru
     public void addAuthor(String _fname,String _lname,String _expertise,String _about)
     {
         String insertQuery = "INSERT INTO `author1`(`firstname`, `lastname`, `expertise`, `about`) VALUES (?,?,?,?)";
@@ -95,15 +95,15 @@ public class Author1 {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(Genre.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Author1.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
     
     
-        // Mengedit author dari funsi idnya
-        public void editAuthor(int _id,String _fname,String _lname,String _expertise,String _about){
+   // Mengedit author dari funsi idnya
+    public void editAuthor(int _id,String _fname,String _lname,String _expertise,String _about){
         String editQuery = "UPDATE `author1` SET `firstName`=?,`lastName`=?,`expertise`=?, `about`=? WHERE `id` =?";
         try {
             PreparedStatement ps = DB.getConnection().prepareStatement(editQuery);
@@ -185,7 +185,7 @@ public class Author1 {
                 Author1 author1 = null ;
                 
         try {
-            while(rs.next())
+            if(rs.next())
             {
                 author1 = new Author1(rs.getInt("id") , rs.getString("firstName"), rs.getString("lastName"), rs.getString("expertise"), rs.getString("about"));
             }

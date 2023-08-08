@@ -631,7 +631,7 @@ public class EditBookForm extends javax.swing.JFrame {
                 jSpinner_Quantity.setValue(selectedBook.getQuantity());
                 jLabel_Author_ID.setText(String.valueOf(selectedBook.getAuthor_id()));
                 
-                                // Menampilkan nama lengkap author
+                 // Menampilkan nama lengkap author
                
                 
                                 

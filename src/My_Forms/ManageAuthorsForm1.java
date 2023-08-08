@@ -238,7 +238,7 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jTextField_FirstName)
@@ -296,7 +296,7 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton_Add_, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton_Edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton_Edit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 44, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -338,11 +338,11 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
         
         
         // check jika textfield kosong
-        if(fname.isEmpty()){
+        if(fname.trim().isEmpty()){
             
             jLabel_EmptyFirstName_.setVisible(true);
         }
-        else if(lname.isEmpty())// jika textfiel tidak kosong
+        else if(lname.trim().isEmpty())// jika textfiel tidak kosong
         {
             jLabel_EmptyLastName_.setVisible(true);
         }
@@ -398,8 +398,15 @@ public class ManageAuthorsForm1 extends javax.swing.JFrame {
         try
            {
                int id = Integer.parseInt(jTextField_ID.getText());
-               author1.removeAuthor(id);
+               // menampilkan konfirmasi pesan sebelum di hapusnya author
                
+               int confirm = JOptionPane.showConfirmDialog(null,"Are You Sure You Want To Delete This Author?","Confirmation Box",JOptionPane.YES_NO_OPTION);
+            
+                if(confirm == JOptionPane.YES_OPTION)
+                {
+                    author1.removeAuthor(id);
+                }
+
                // refesh jtable with genres
                //populateJtableWithgenres();
                
