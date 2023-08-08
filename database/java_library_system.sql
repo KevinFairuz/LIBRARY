@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 07 Agu 2023 pada 07.59
--- Versi server: 10.4.28-MariaDB
--- Versi PHP: 8.2.4
+-- Host: localhost:3307
+-- Generation Time: Aug 08, 2023 at 01:51 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `author`
+-- Table structure for table `author`
 --
 
 CREATE TABLE `author` (
@@ -38,7 +38,7 @@ CREATE TABLE `author` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `author1`
+-- Table structure for table `author1`
 --
 
 CREATE TABLE `author1` (
@@ -50,7 +50,7 @@ CREATE TABLE `author1` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `author1`
+-- Dumping data for table `author1`
 --
 
 INSERT INTO `author1` (`id`, `firstName`, `lastName`, `expertise`, `about`) VALUES
@@ -62,7 +62,7 @@ INSERT INTO `author1` (`id`, `firstName`, `lastName`, `expertise`, `about`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `books`
+-- Table structure for table `books`
 --
 
 CREATE TABLE `books` (
@@ -80,7 +80,7 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `books`
+-- Dumping data for table `books`
 --
 
 INSERT INTO `books` (`id`, `isbn`, `name`, `author_id`, `genre_id`, `quantity`, `publisher`, `price`, `date_received`, `description`, `cover_image`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `books` (`id`, `isbn`, `name`, `author_id`, `genre_id`, `quantity`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `book_genres`
+-- Table structure for table `book_genres`
 --
 
 CREATE TABLE `book_genres` (
@@ -102,7 +102,7 @@ CREATE TABLE `book_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `book_genres`
+-- Dumping data for table `book_genres`
 --
 
 INSERT INTO `book_genres` (`id`, `name`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `book_genres` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `issue_book`
+-- Table structure for table `issue_book`
 --
 
 CREATE TABLE `issue_book` (
@@ -127,7 +127,7 @@ CREATE TABLE `issue_book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `issue_book`
+-- Dumping data for table `issue_book`
 --
 
 INSERT INTO `issue_book` (`book_id`, `member_id`, `status`, `issue_date`, `return_date`, `note`) VALUES
@@ -142,7 +142,7 @@ INSERT INTO `issue_book` (`book_id`, `member_id`, `status`, `issue_date`, `retur
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE `members` (
@@ -156,7 +156,7 @@ CREATE TABLE `members` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `firstName`, `lastName`, `phone`, `email`, `gender`, `picture`) VALUES
@@ -165,7 +165,7 @@ INSERT INTO `members` (`id`, `firstName`, `lastName`, `phone`, `email`, `gender`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -176,30 +176,55 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `usertype`) VALUES
 (1, 'u_admin', 'pass', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_table`
+--
+
+CREATE TABLE `users_table` (
+  `id` int(11) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `user_type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users_table`
+--
+
+INSERT INTO `users_table` (`id`, `firstName`, `lastName`, `username`, `password`, `user_type`) VALUES
+(1, 'Kevin', 'Fairuz', 'rnx', '12345', 'user'),
+(2, 'tes1', 'tes2', 'tes4', '15667221', 'admin'),
+(3, 'coba', 'asik', 'as1k', 'ciba1', 'user'),
+(5, 'cobaa', 'cibaa', 'cubicuba', '123456', 'user');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `author`
+-- Indexes for table `author`
 --
 ALTER TABLE `author`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `author1`
+-- Indexes for table `author1`
 --
 ALTER TABLE `author1`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `books`
+-- Indexes for table `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
@@ -207,56 +232,68 @@ ALTER TABLE `books`
   ADD UNIQUE KEY `isbn_2` (`isbn`);
 
 --
--- Indeks untuk tabel `book_genres`
+-- Indexes for table `book_genres`
 --
 ALTER TABLE `book_genres`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `members`
+-- Indexes for table `members`
 --
 ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- Indexes for table `users_table`
+--
+ALTER TABLE `users_table`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `author1`
+-- AUTO_INCREMENT for table `author1`
 --
 ALTER TABLE `author1`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `books`
+-- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `book_genres`
+-- AUTO_INCREMENT for table `book_genres`
 --
 ALTER TABLE `book_genres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `members`
+-- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users_table`
+--
+ALTER TABLE `users_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
